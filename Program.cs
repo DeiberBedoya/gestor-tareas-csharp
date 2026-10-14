@@ -1,4 +1,6 @@
-﻿List<Tarea> tareas = new List<Tarea>();
+﻿using System.Diagnostics;
+
+List<Tarea> tareas = new List<Tarea>();
 
 while (true)
 {
@@ -44,8 +46,23 @@ while (true)
             break;
 
         case "3":
-            Console
-            .WriteLine("Aqui ira: marcar tarea como completada");
+            if (tareas.Count == 0)
+            {
+                Console.WriteLine("No hay tareas registradas.");
+                break;
+            }
+
+            Console.Write("Numero de tarea a completar: ");
+            string? entradaNumero = Console.ReadLine();
+
+            if (!int.TryParse(entradaNumero, out int numero) || numero <1 || numero > tareas.Count)
+            {
+                Console.WriteLine("Numero invalido. Elige uno de la lista.");
+                break;
+            }
+
+            tareas[numero -1].Completada = true;
+            Console.WriteLine($"Tarea \"{tareas[numero -1].Titulo}\" marcada como completada.");
             break;
 
         case "4":
