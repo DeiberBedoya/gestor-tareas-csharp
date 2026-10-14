@@ -29,7 +29,18 @@ while (true)
             break;
 
         case "2":
-            Console.WriteLine("Aqui ira: Listar tareas");
+            if (tareas.Count == 0)
+            {
+                Console.WriteLine("No hay tareas registradas.");
+                break;
+            }
+
+            Console.WriteLine("--- Lista de tareas ---");
+            for (int i = 0; i < tareas.Count; i++)
+            {
+                string estado = tareas[i].Completada ? "[x]" : "[ ]";
+                Console.WriteLine($"{i+1}. {estado} {tareas[i].Titulo}");
+            }
             break;
 
         case "3":
