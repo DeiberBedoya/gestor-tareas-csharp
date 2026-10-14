@@ -1,4 +1,6 @@
-﻿while (true)
+﻿List<Tarea> tareas = new List<Tarea>();
+
+while (true)
 {
     Console.WriteLine("====Gestor de Tareas====");
     Console.WriteLine("1. Agregar una tarea");
@@ -13,7 +15,17 @@
     switch (opcion)
     {
         case "1":
-            Console.WriteLine("Aqui ira: agregar tarea");
+            Console.Write("Titulo de la tarea: ");
+            string? titulo = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(titulo))
+            {
+                Console.WriteLine("El titulo no puede estar vacio.");
+                break;
+            }
+
+            tareas.Add(new Tarea(titulo));
+            Console.WriteLine($"Tarea agregada correctamente. Total de tareas: {tareas.Count}");
             break;
 
         case "2":
